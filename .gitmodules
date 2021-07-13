@@ -1,0 +1,3 @@
+[submodule "external/cbuffer"]
+	path = external/cbuffer
+	url = https://github.com/OpenPixelSystems/c-cbuffer.git
