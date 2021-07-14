@@ -1,6 +1,6 @@
 # OPS Logger Lib
 
-project('logger', 'c', version : '4.0.0')
+project('logger', 'c', version : '4.0.0', subproject_dir: 'external')
 
 c_args = []
 link_args = []
@@ -10,9 +10,9 @@ if meson.is_cross_build()
   link_args += meson.get_cross_property('cross_link_args')
 endif
 
-logger_includes = include_directories(['./include', './external/cbuffer/include'])
-logger_srcs = files(['./src/logger.c', './external/cbuffer/src/cbuffer.c'])
-
-if not meson.is_cross_build()
-  subdir('tests')
+if not meson.is_subproject()
+  cbuff = subproject('cbuffer')
+  cbuff_includes = cbuff.get_variable('cbuff_includes')
+  cbuff_srcs = cbuff.get_variable('cbuff_srcs')
 endif
+
