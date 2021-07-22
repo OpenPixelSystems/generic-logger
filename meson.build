@@ -18,3 +18,4 @@ if not meson.is_subproject()
   cbuff_srcs = cbuff.get_variable('cbuff_srcs')
 endif
 
+subdir('src')
