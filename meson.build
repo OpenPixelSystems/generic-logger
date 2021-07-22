@@ -5,6 +5,8 @@ project('logger', 'c', version : '4.0.0', subproject_dir: 'external')
 c_args = []
 link_args = []
 
+logger_includes = include_directories('./include')
+
 if meson.is_cross_build()
   c_args += meson.get_cross_property('cross_args')
   link_args += meson.get_cross_property('cross_link_args')
