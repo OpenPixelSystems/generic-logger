@@ -19,6 +19,7 @@ int main()
 	logger_debug(logger, "test 345\n");
 	logger_warn(logger, "test 567\n");
 	logger_error(logger, "test 789\n");
+	logger_raw_print(logger, "test1010\n");
 
 	logger_delete(logger);
 	return 0;

@@ -57,6 +57,7 @@ int _logger_log(struct logger *logger, const char *fmt,...);
 #define logger_debug(lgr_, fmt_, ...) _logger_log(lgr_, __FILE__": (debug): "fmt_, ##__VA_ARGS__)
 #define logger_warn(lgr_, fmt_, ...)  _logger_log(lgr_, __FILE__": (warn) : "fmt_, ##__VA_ARGS__)
 #define logger_error(lgr_, fmt_, ...) _logger_log(lgr_, __FILE__": (error): "fmt_, ##__VA_ARGS__)
+#define logger_raw_print(lgr_, fmt_, ...) _logger_log(lgr_, fmt_, ##__VA_ARGS__)
 
 static inline int logger_write(struct logger *logger, char *data, uint32_t len)
 {
