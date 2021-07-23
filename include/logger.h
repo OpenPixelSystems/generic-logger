@@ -25,17 +25,6 @@
 
 #if defined(CFG_LOGGER_ENABLED)
 
-#if defined(CFG_LOGGER_DEBUG_INTERNALS)
-#define LOGGER_ERR(fmt_, ...) fprintf(stdout, "logger: (error): "fmt_, ##__VA_ARGS__)
-#define LOGGER_DEBUG(fmt_, ...) fprintf(stdout, "logger: (debug): "fmt_, ##__VA_ARGS__)
-#define LOGGER_INFO(fmt_, ...) fprintf(stdout, "logger: (debug): "fmt_, ##__VA_ARGS__)
-#else
-#define LOGGER_ERR(fmt, ...) while(0){}
-#define LOGGER_DEBUG(fmt, ...) while(0){}
-#define LOGGER_INFO(fmt, ...) while(0){}
-
-#endif
-
 #if defined (CFG_LOGGER_MSG_POOL)
 struct cbuffer_t;
 #endif

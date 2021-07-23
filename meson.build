@@ -18,4 +18,7 @@ if not meson.is_subproject()
   cbuff_srcs = cbuff.get_variable('cbuff_srcs')
 endif
 
+logger_includes = include_directories('include')
+
 subdir('src')
+subdir('tests')
