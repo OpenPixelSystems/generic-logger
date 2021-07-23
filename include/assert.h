@@ -6,7 +6,10 @@
 	if (!(x)) { \
 		while (1) {}; \
 	} }
-#else 
+#else
+#include <stdio.h>
+#include <stdlib.h>
+
 #define assert(x) { \
 	if (!(x)) { \
 		printf("logger: (error): (%s:%s:%d): assert triggerd!\n",\
