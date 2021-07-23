@@ -32,6 +32,8 @@
 
 #if defined(CFG_LOGGER_ENABLED)
 
+static struct logger *_logger;
+
 #if defined (CFG_LOGGER_MSG_POOL)
 struct cbuffer_t;
 #endif
@@ -66,6 +68,11 @@ static inline int logger_write(struct logger *logger, char *data, uint32_t len)
 	assert(logger->ops->write);
 
 	return logger->ops->write((void*)logger, data, len);
+}
+
+static inline void logger_set_default_logger(struct logger *logger)
+{
+	_logger = logger;
 }
 
 void logger_flush(struct logger *logger);

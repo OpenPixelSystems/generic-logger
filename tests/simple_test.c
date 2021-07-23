@@ -21,6 +21,8 @@ int main()
 	logger_error(logger, "test 789\n");
 	logger_raw_print(logger, "test1010\n");
 
+	logger_set_default_logger(logger);
+
 	logger_delete(logger);
 	return 0;
 }
