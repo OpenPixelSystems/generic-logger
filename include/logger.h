@@ -32,7 +32,7 @@
 
 #if defined(CFG_LOGGER_ENABLED)
 
-static struct logger *_logger;
+extern struct logger *_logger;
 
 #if defined (CFG_LOGGER_MSG_POOL)
 struct cbuffer_t;

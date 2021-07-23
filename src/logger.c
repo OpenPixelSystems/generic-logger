@@ -3,6 +3,8 @@
 #include "logger.h"
 #include "assert.h"
 
+struct logger *_logger;
+
 #if !defined(CFG_LOGGER_PRODUCTION)
 #include <stdio.h>
 #include <stdlib.h>

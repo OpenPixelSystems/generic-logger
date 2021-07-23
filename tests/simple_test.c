@@ -22,6 +22,7 @@ int main()
 	logger_raw_print(logger, "test1010\n");
 
 	logger_set_default_logger(logger);
+	logger_raw_print(_logger, "test1010\n");
 
 	logger_delete(logger);
 	return 0;
