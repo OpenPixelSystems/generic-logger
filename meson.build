@@ -21,4 +21,7 @@ endif
 logger_includes = include_directories('include')
 
 subdir('src')
-subdir('tests')
+
+if not meson.is_subproject()
+  subdir('tests')
+endif
