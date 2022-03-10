@@ -1,4 +1,4 @@
 [submodule "external/cbuffer"]
 	path = external/cbuffer
-	url = https://github.com/OpenPixelSystems/c-cbuffer.git
+	url = git@github.com:OpenPixelSystems/generic-cbuffer.git
 	branch = master
