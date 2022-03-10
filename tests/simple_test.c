@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include "logger.h"
 
 int test_logger_write(void *priv, char *data, uint32_t len)
