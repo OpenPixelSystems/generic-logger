@@ -52,9 +52,15 @@ int _logger_log(struct logger *logger, const char *fmt,...)
 	va_list va;
 	char *buf;
 
+	struct logger *to = logger ? logger : _logger;
+	if (!to) {
+		LOGGER_INTERNAL_ERR("No logger provided\n");
+		return -1;
+	}
+
 	va_start(va, fmt);
 #ifdef CFG_LOGGER_MSG_POOL
-	buf = cbuffer_get_write_pointer(logger->cbuf);
+	buf = cbuffer_get_write_pointer(to->cbuf);
 #else
 	buf = log_buffer;
 #endif
@@ -62,12 +68,12 @@ int _logger_log(struct logger *logger, const char *fmt,...)
 	vsnprintf(buf, CFG_LOGGER_MSG_MAX_LEN, fmt, va);
 
 #ifdef CFG_LOGGER_MSG_POOL
-	retval = cbuffer_signal_element_written(logger->cbuf);
+	retval = cbuffer_signal_element_written(to->cbuf);
 #ifdef CFG_LOGGER_MSG_POOL_FLUSH_NOW
-	logger_flush(logger);
+	logger_flush(to);
 #endif /* CFG_LOGGER_MSG_POOL_FLUSH_NOW */
 #else
-	retval = logger_write(logger, buf, CFG_LOGGER_MSG_MAX_LEN + 1);
+	retval = logger_write(to, buf, CFG_LOGGER_MSG_MAX_LEN + 1);
 #endif /* CFG_LOGGER_MSG_POOL */
 	va_end(va);
 	return retval;
@@ -75,15 +81,21 @@ int _logger_log(struct logger *logger, const char *fmt,...)
 
 void logger_flush(struct logger *logger)
 {
+	struct logger *to = logger ? logger : _logger;
+	if (!to) {
+		LOGGER_INTERNAL_ERR("No logger provided\n");
+		return;
+	}
+
 #ifdef CFG_LOGGER_MSG_POOL
 	while (1) {
-		char *buf = cbuffer_get_read_pointer(logger->cbuf);
+		char *buf = cbuffer_get_read_pointer(to->cbuf);
 		if (!buf) return;
-		int retval = logger_write(logger, buf, CFG_LOGGER_MSG_MAX_LEN +1);
+		int retval = logger_write(to, buf, CFG_LOGGER_MSG_MAX_LEN +1);
 		if (retval < 0) {
 			LOGGER_INTERNAL_ERR("failed to write log string\n");
 		}
-		cbuffer_signal_element_read(logger->cbuf);
+		cbuffer_signal_element_read(to->cbuf);
 	}
 #endif
 }
