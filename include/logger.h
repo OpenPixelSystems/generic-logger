@@ -20,13 +20,13 @@
 #define CFG_LOGGER_DEBUG_INTERNALS
 
 //!< The number of message that can be stored in the internal CBUFFER
-#define CFG_LOGGER_MSG_POOL
-#define CFG_LOGGER_MSG_POOL_SIZE 25
+//#define CFG_LOGGER_MSG_POOL
+//#define CFG_LOGGER_MSG_POOL_SIZE 25
 #define CFG_LOGGER_MSG_MAX_LEN 512
+//
+//#define CFG_LOGGER_MSG_POOL_FLUSH_NOW
 
-#define CFG_LOGGER_MSG_POOL_FLUSH_NOW
-
-//#define CFG_LOGGER_PRODUCTION
+#define CFG_LOGGER_PRODUCTION
 
 /******************************************************************************/
 

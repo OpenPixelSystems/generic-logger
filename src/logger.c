@@ -1,15 +1,11 @@
 #include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "logger.h"
 #include "assert.h"
 
 struct logger *_logger;
-
-#if !defined(CFG_LOGGER_PRODUCTION)
-#include <stdio.h>
-#include <stdlib.h>
-#warning("Logger build in none-production mode")
-#endif /* CFG_LOGGER_PRODUCTION */
 
 #if defined(CFG_LOGGER_ENABLED)
 
@@ -21,6 +17,7 @@ char log_buffer[CFG_LOGGER_MSG_MAX_LEN + 1];
 #endif /* CFG_LOGGER_MSG_POOL */
 
 #if !defined(CFG_LOGGER_PRODUCTION) && defined(CFG_LOGGER_DEBUG_INTERNALS)
+#warning("Logger build in none-production mode")
 #define LOGGER_INTERNAL_ERR(fmt_, ...) fprintf(stdout, "logger: (error): "fmt_, ##__VA_ARGS__)
 #define LOGGER_INTERNAL_DEBUG(fmt_, ...) fprintf(stdout, "logger: (debug): "fmt_, ##__VA_ARGS__)
 #define LOGGER_INTERNAL_INFO(fmt_, ...) fprintf(stdout, "logger: (debug): "fmt_, ##__VA_ARGS__)
