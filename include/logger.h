@@ -57,16 +57,16 @@ struct logger *logger_new(const struct logger_ops *ops);
 
 int _logger_log(struct logger *logger, const char *fmt,...);
 
-#define logger_info(lgr_, fmt_, ...)  _logger_log(lgr_, __FILE__": (info) : "fmt_, ##__VA_ARGS__)
-#define logger_debug(lgr_, fmt_, ...) _logger_log(lgr_, __FILE__": (debug): "fmt_, ##__VA_ARGS__)
-#define logger_warn(lgr_, fmt_, ...)  _logger_log(lgr_, __FILE__": (warn) : "fmt_, ##__VA_ARGS__)
-#define logger_error(lgr_, fmt_, ...) _logger_log(lgr_, __FILE__": (error): "fmt_, ##__VA_ARGS__)
+#define logger_info(lgr_, fmt_, ...)  _logger_log(lgr_, "(INFO) : "__FILE__": "fmt_, ##__VA_ARGS__)
+#define logger_debug(lgr_, fmt_, ...) _logger_log(lgr_, "(DEBUG): "__FILE__": "fmt_, ##__VA_ARGS__)
+#define logger_warn(lgr_, fmt_, ...)  _logger_log(lgr_, "(WARN) : "__FILE__": "fmt_, ##__VA_ARGS__)
+#define logger_error(lgr_, fmt_, ...) _logger_log(lgr_, "(ERROR): "__FILE__": "fmt_, ##__VA_ARGS__)
 #define logger_raw_print(lgr_, fmt_, ...) _logger_log(lgr_, fmt_, ##__VA_ARGS__)
 
-#define log_info(fmt_, ...)  _logger_log(NULL, __FILE__": (info) : "fmt_, ##__VA_ARGS__)
-#define log_debug(fmt_, ...) _logger_log(NULL, __FILE__": (debug): "fmt_, ##__VA_ARGS__)
-#define log_warn(fmt_, ...)  _logger_log(NULL, __FILE__": (warn) : "fmt_, ##__VA_ARGS__)
-#define log_error(fmt_, ...) _logger_log(NULL, __FILE__": (error): "fmt_, ##__VA_ARGS__)
+#define log_info(fmt_, ...)  _logger_log(NULL, "(INFO) : "__FILE__": "fmt_, ##__VA_ARGS__)
+#define log_debug(fmt_, ...) _logger_log(NULL, "(DEBUG): "__FILE__": "fmt_, ##__VA_ARGS__)
+#define log_warn(fmt_, ...)  _logger_log(NULL, "(WARN) : "__FILE__": "fmt_, ##__VA_ARGS__)
+#define log_error(fmt_, ...) _logger_log(NULL, "(ERROR): "__FILE__": "fmt_, ##__VA_ARGS__)
 #define log_raw_print(fmt_, ...) _logger_log(NULL, fmt_, ##__VA_ARGS__)
 
 static inline int logger_write(struct logger *logger, char *data, uint32_t len)
